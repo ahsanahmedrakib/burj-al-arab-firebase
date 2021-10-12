@@ -20,12 +20,12 @@ const Header = () => {
                     <li>
                         <Link className="btn-book" to="/book">Book</Link>
                     </li>
-                    { user.email && <li>
+                    { user?.accessToken && <li>
                         <img className="rounded-circle" style={{ width: "40px", height: "40px" }} src={user.photoURL} alt="" />
                     </li>}
                     <li>
-                    {user.email && <span className="text-primary"><strong>{user.displayName } </strong> </span>  }
-                        { user.email ? <button className="btn btn-outline-light" onClick={logOut}>Logut</button> : <Link to="/login">Login</Link> }
+                    {user?.accessToken && <span className="text-primary"><strong>{user.displayName } </strong> </span>  }
+                        { user.accessToken ? <button className="btn btn-outline-light" onClick={logOut}>Logut</button> : <Link to="/login">Login</Link> }
                     </li>
                     
                 </ul>
