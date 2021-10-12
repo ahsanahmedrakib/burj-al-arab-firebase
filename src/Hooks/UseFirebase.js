@@ -53,27 +53,44 @@ const useFirebase = () => {
     const userRegistration = e => {
         e.preventDefault();
         console.log(email, password);
+        if(email.length === 0){
+            setError("Please enter your email")
+            return;
+        }
+        if(password.length === 0){
+            setError("Please enter a password");
+            return;
+        }
         if(password.length < 6){
             setError("Password should be at least 6 charecters");
             return;
         }
         createUserWithEmailAndPassword(auth, email, password)
         .then(result => {
+            setUserInfo();
             const user = result.user;
             console.log(user);
             setError("");
-            setUserInfo();
         })
         .catch((error) => {
             setError(error.message);
         })
     }
-
+    
     const signInWithEmail = e => {
         e.preventDefault();
+        if(useremail.length === 0){
+            setError("Please give your email")
+            return;
+        }
+        if(userpassword.length === 0){
+            setError("Please give your password")
+            return;
+        }
         signInWithEmailAndPassword(auth, useremail, userpassword)
         .then(result => {
             const user = result.user;
+            console.log(user);
             setUser(result.user)
             setError('');
         })
